@@ -2,7 +2,18 @@ require 'sinatra/base'
 require 'active_record'
 require 'twitter'
 
-class Dispatch
+class Dispatch < ActiveRecord::Base
+  def self.parse(tweet)
+    components = tweet[:text].split('***').map(&:strip)
+    {
+      status_id: tweet[:id],
+      address: components.fetch(0),
+      city: components.fetch(1),
+      type: components.fetch(2),
+      incident_num_one: components.fetch(3),
+      incident_num_two: components.fetch(4).sub('- ', '')
+    }
+  end
 end
 
 class City2Data < Sinatra::Base
