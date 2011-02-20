@@ -7,7 +7,7 @@ end
 class City2Data < Sinatra::Base
 
   get '/' do
-    200
+    erb :index
   end
 
   post '/update' do
