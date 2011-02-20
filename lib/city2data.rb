@@ -12,6 +12,6 @@ class City2Data < Sinatra::Base
 
   post '/update' do
     last_dispatch = Dispatch.last
-    Twitter.user_timeline('SBCFireDispatch', status_id: last_dispatch[:status_id])
+    Twitter.user_timeline('SBCFireDispatch', :status_id => last_dispatch[:status_id])
   end
 end

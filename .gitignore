@@ -1,2 +1,6 @@
-*.swp
-db/development.db
+*~
+*.pyc
+*.6
+*-64
+*.8
+*-32
