@@ -15,7 +15,7 @@ describe "City2Data application" do
   describe "GET /update" do
     
     before(:each) do
-      Dispatch.stub(:last).and_return(status_id: 12345)
+      Dispatch.stub(:last_status_id).and_return(12345)
       Twitter.stub(:user_timeline).and_return([])
     end
 
@@ -25,7 +25,7 @@ describe "City2Data application" do
     end
 
     it "should find the last dispatch tweet" do
-      Dispatch.should_receive(:last)
+      Dispatch.should_receive(:last_status_id)
       get '/update'
     end
 
