@@ -26,12 +26,15 @@ class City2Data < Sinatra::Base
 
   get '/seed' do
     tweets = Twitter.user_timeline('SBCFireDispatch', since_id: '39129063457177600')
-    return 404 if tweets.zero?
+    return 404 if tweets.size == 0
 
-    content_type :json
+    content = []
     tweets.each do |tweet|
       dispatch = Dispatch.new_from_tweet(tweet)
-      dispatch.to_json
+      content << dispatch.to_json
     end
+
+    content_type :json
+    content.to_json
   end
 end
