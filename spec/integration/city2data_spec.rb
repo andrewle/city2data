@@ -1,6 +1,4 @@
-require 'city2data'
-require 'rspec'
-require 'rack/test'
+require 'spec_helper'
 
 describe "City2Data application" do
   include Rack::Test::Methods

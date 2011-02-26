@@ -1,4 +1,4 @@
-require 'city2data'
+require 'spec_helper'
 
 describe 'Dispatch' do
 
