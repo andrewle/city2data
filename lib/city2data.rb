@@ -1,6 +1,4 @@
-require 'sinatra/base'
-require 'active_record'
-require 'twitter'
+require 'city2data/init'
 
 class Dispatch < ActiveRecord::Base
   def self.parse(tweet)
