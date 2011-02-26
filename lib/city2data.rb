@@ -3,8 +3,8 @@ require 'active_record'
 require 'twitter'
 require 'geokit'
 
-require_relative 'city2data/dispatch'
-require_relative 'city2data/tweet'
+require 'city2data/dispatch'
+require 'city2data/tweet'
 
 class City2Data < Sinatra::Base
   configure do
