@@ -4,7 +4,9 @@ require 'active_record'
 namespace :db do
   task :environment do
     config = YAML.load(File.read('config/database.yml'))
-    ActiveRecord::Base.establish_connection config['development']
+    environment = ENV['RACK_ENV'] || 'development'
+
+    ActiveRecord::Base.establish_connection config[environment]
     ActiveRecord::Base.logger = Logger.new(STDOUT)
     ActiveRecord::Migration.verbose = true
   end
