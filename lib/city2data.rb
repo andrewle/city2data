@@ -20,10 +20,7 @@ class City2Data < Sinatra::Base
   end
 
   get '/update' do
-    tweets = Twitter.user_timeline('SBCFireDispatch', since_id: Dispatch.last_status_id)
-    tweets.each do |tweet|
-      dispatch = Dispatch.new_from_tweet(tweet)
-      dispatch.save!
-    end
+    Dispatch.updates!
+    200
   end
 end
