@@ -20,6 +20,7 @@ class Tweet
       components = @data[:text].split('***').map(&:strip)
       {
         status_id: @data[:id],
+        reported_on: @data[:created_at],
         address: components.fetch(0),
         city: components.fetch(1),
         emergency_type: components.fetch(2),
@@ -32,6 +33,7 @@ class Tweet
     def components_for_unparsable
       { 
         status_id: @data[:id],
+        reported_on: @data[:created_at],
         json_data: @data.to_json 
       }
     end

@@ -4,10 +4,12 @@ describe Dispatch do
   before(:each) do
     @valid_tweet = {
       id: '39129063457177600',
+      created_at: '2011-01-25 01:53:11.000000',
       text: '4870 Calle Real *** Santa Barbara *** Public Assist - All *** 34443670 *** - 119790301'
     }
     @unparsable_tweet = {
       id: '39129063457177600',
+      created_at: '2011-01-25 01:53:11.000000',
       text: 'SANTA BARBARA CO FD C-20 FATAL SUICIDE JUMP OFF COLD SPRING BRIDGE IN SANTA BARBARA CT 16:30'
     }
     @valid_attrs = {
@@ -17,6 +19,7 @@ describe Dispatch do
       emergency_type: 'Public Assist - All',
       incident_num_one: '34443670',
       incident_num_two: '119790301',
+      reported_on: '2011-01-25 01:53:11.000000',
       json_data: @valid_tweet.to_json
     }
 
@@ -46,6 +49,7 @@ describe Dispatch do
       it "should return a Dispatch with only the json data filled in" do
         unparsable_attrs = {
           status_id: '39129063457177600',
+          reported_on: '2011-01-25 01:53:11.000000',
           json_data: @unparsable_tweet.to_json
         }
         dispatch_from_unparsable = Dispatch.new(unparsable_attrs)
