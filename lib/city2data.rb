@@ -2,13 +2,25 @@ require 'city2data/init'
 
 class Dispatch < ActiveRecord::Base
   def self.new_from_tweet(tweet)
-    new(Dispatch.parse(tweet))
+    tweet = Tweet.new(tweet)
+    new(tweet.parse) if tweet.parsable?
+  end
+end
+
+class Tweet
+  def initialize(tweet)
+    @data = tweet
   end
 
-  def self.parse(tweet)
-    components = tweet[:text].split('***').map(&:strip)
+  def parsable?
+    @data[:text].include?('***')
+  end
+
+  def parse
+    return false unless parsable?
+    components = @data[:text].split('***').map(&:strip)
     {
-      status_id: tweet[:id],
+      status_id: @data[:id],
       address: components.fetch(0),
       city: components.fetch(1),
       type: components.fetch(2),

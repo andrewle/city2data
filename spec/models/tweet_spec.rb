@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Dispatch do
+describe Tweet do
   before(:each) do
     @valid_tweet = {
       id: '39129063457177600',
@@ -20,19 +20,28 @@ describe Dispatch do
     }
   end
 
-  describe "#new_from_tweet" do
-    it "should respond" do
-      Dispatch.should respond_to(:new_from_tweet)
+  describe '#parsable?' do
+    it "should return true when a tweet is parsable" do
+      tweet = Tweet.new(@valid_tweet)
+      tweet.parsable?.should be_true
     end
 
-    it "should create a new Dispatch model from a valid tweet" do
-      @valid_dispatch = Dispatch.new(@valid_attrs)
-      dispatch_from_tweet = Dispatch.new_from_tweet(@valid_tweet)
-      dispatch_from_tweet.attributes.should == @valid_dispatch.attributes
+    it "should return false when a tweet is not parasble" do
+      tweet = Tweet.new(@unparsable_tweet)
+      tweet.parsable?.should be_false
+    end
+  end
+
+  describe '#parse' do
+    it "should separate a tweet response into its components" do
+      tweet = Tweet.new(@valid_tweet)
+      tweet.parse.should == @valid_attrs
     end
 
-    it "should return nil when passed an invalid tweet" do
-      Dispatch.new_from_tweet(@unparsable_tweet).should be_nil
+    it "should return false if the tweet is not parsable" do
+      tweet = Tweet.new(@unparsable_tweet)
+      tweet.parse.should be_false
     end
   end
 end
+
