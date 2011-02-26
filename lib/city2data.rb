@@ -1,4 +1,8 @@
-require_relative 'city2data/init'
+require 'sinatra/base'
+require 'active_record'
+require 'twitter'
+require 'geokit'
+
 require_relative 'city2data/dispatch'
 require_relative 'city2data/tweet'
 

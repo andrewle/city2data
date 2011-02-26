@@ -1,5 +1,3 @@
-require 'geokit'
-
 class Dispatch < ActiveRecord::Base
   include Geokit::Geocoders
 
