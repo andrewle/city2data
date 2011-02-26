@@ -1,6 +1,6 @@
-require 'city2data/init'
-require 'city2data/dispatch'
-require 'city2data/tweet'
+require_relative 'city2data/init'
+require_relative 'city2data/dispatch'
+require_relative 'city2data/tweet'
 
 class City2Data < Sinatra::Base
   configure do
@@ -17,6 +17,21 @@ class City2Data < Sinatra::Base
 
   get '/update' do
     last_dispatch = Dispatch.last
-    Twitter.user_timeline('SBCFireDispatch', since_id: last_dispatch[:status_id])
+    tweets = Twitter.user_timeline('SBCFireDispatch', since_id: last_dispatch[:status_id])
+    tweets.each do |tweet|
+      dispatch = Dispatch.new_from_tweet(tweet)
+      dispatch.save!
+    end
+  end
+
+  get '/seed' do
+    tweets = Twitter.user_timeline('SBCFireDispatch', since_id: '39129063457177600')
+    return 404 if tweets.zero?
+
+    content_type :json
+    tweets.each do |tweet|
+      dispatch = Dispatch.new_from_tweet(tweet)
+      dispatch.to_json
+    end
   end
 end
