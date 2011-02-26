@@ -4,6 +4,7 @@ gem 'rack', '1.2.1'
 gem 'sinatra', '1.1.2'
 gem 'activerecord', '3.0.4'
 gem 'twitter', '1.1.2'
+gem 'geokit', '1.5.0'
 
 group :test, :development do
   gem 'rspec', '2.5.0'

@@ -19,6 +19,14 @@ describe Dispatch do
       incident_num_two: '119790301',
       json_data: @valid_tweet.to_json
     }
+
+    @location = double(
+      success: true,
+      lat: 34.443426,
+      lng: -119.791496,
+      zip: '93111'
+    )
+    Geokit::Geocoders::GoogleGeocoder.stub(:geocode).and_return(@location)
   end
 
   describe "#new_from_tweet" do
@@ -44,6 +52,40 @@ describe Dispatch do
         dispatch = Dispatch.new_from_tweet(@unparsable_tweet)
         dispatch.attributes.should == dispatch_from_unparsable.attributes
       end
+    end
+  end
+
+  describe 'Geocoding' do
+    it "should respond to #geocode" do
+      Dispatch.new.should respond_to(:geocode)
+    end
+
+    it "#geocode should set our remaining location data" do
+      Geokit::Geocoders::GoogleGeocoder.should_receive(:geocode).
+        and_return(@location)
+
+      dispatch = Dispatch.new(@valid_attrs)
+      dispatch.geocode
+
+      dispatch.latitude.should == '34.443426'
+      dispatch.longitude.should == '-119.791496'
+      dispatch.zip_code.should == '93111'
+    end
+
+    it "#geocode should not attempt a service call is the tweet was unparsable" do
+      Geokit::Geocoders::GoogleGeocoder.should_not_receive(:geocode)
+      dispatch = Dispatch.new(@unparsable_attrs)
+      dispatch.geocode
+
+      dispatch_with_blank_address = Dispatch.new(@unparsable_attrs)
+      dispatch_with_blank_address.address = ""
+      dispatch_with_blank_address.geocode
+    end
+
+    it "should call geocode before saving" do
+      dispatch = Dispatch.new(@valid_attrs)
+      dispatch.should_receive(:geocode)
+      dispatch.save!
     end
   end
 end

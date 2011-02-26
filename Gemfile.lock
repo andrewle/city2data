@@ -21,6 +21,7 @@ GEM
       rack (>= 1.1.0, < 2)
     faraday_middleware (0.3.2)
       faraday (~> 0.5.4)
+    geokit (1.5.0)
     hashie (1.0.0)
     i18n (0.5.0)
     multi_json (0.0.5)
@@ -60,6 +61,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (= 3.0.4)
+  geokit (= 1.5.0)
   pg
   rack (= 1.2.1)
   rack-test (= 0.5.7)
