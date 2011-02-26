@@ -1,6 +1,10 @@
 require 'city2data/init'
 
 class Dispatch < ActiveRecord::Base
+  def self.new_from_tweet(tweet)
+    new(Dispatch.parse(tweet))
+  end
+
   def self.parse(tweet)
     components = tweet[:text].split('***').map(&:strip)
     {
