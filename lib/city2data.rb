@@ -11,6 +11,10 @@ class City2Data < Sinatra::Base
     ActiveRecord::Base.establish_connection c.DB_CONFIG['development']
   end
 
+  configure :production do |c|
+    ActiveRecord::Base.establish_connection c.DB_CONFIG['production']
+  end
+
   get '/' do
     erb :index
   end
