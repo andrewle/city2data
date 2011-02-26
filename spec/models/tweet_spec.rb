@@ -39,9 +39,13 @@ describe Tweet do
       tweet.parse.should == @valid_attrs
     end
 
-    it "should return false if the tweet is not parsable" do
+    it "should return just the json data if the tweet is not parsable" do
+      unparsable_attrs = { 
+        status_id: '39129063457177600',
+        json_data: @unparsable_tweet.to_json 
+      }
       tweet = Tweet.new(@unparsable_tweet)
-      tweet.parse.should be_false
+      tweet.parse.should == unparsable_attrs
     end
   end
 end

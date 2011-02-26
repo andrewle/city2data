@@ -26,14 +26,24 @@ describe Dispatch do
       Dispatch.should respond_to(:new_from_tweet)
     end
 
-    it "should create a new Dispatch model from a valid tweet" do
-      @valid_dispatch = Dispatch.new(@valid_attrs)
-      dispatch_from_tweet = Dispatch.new_from_tweet(@valid_tweet)
-      dispatch_from_tweet.attributes.should == @valid_dispatch.attributes
+    describe 'for a parsable tweet' do
+      it "should create a new Dispatch with attributes filled in" do
+        @valid_dispatch = Dispatch.new(@valid_attrs)
+        dispatch_from_tweet = Dispatch.new_from_tweet(@valid_tweet)
+        dispatch_from_tweet.attributes.should == @valid_dispatch.attributes
+      end
     end
 
-    it "should return nil when passed an invalid tweet" do
-      Dispatch.new_from_tweet(@unparsable_tweet).should be_nil
+    describe 'for an unparsable tweet' do
+      it "should return a Dispatch with only the json data filled in" do
+        unparsable_attrs = {
+          status_id: '39129063457177600',
+          json_data: @unparsable_tweet.to_json
+        }
+        dispatch_from_unparsable = Dispatch.new(unparsable_attrs)
+        dispatch = Dispatch.new_from_tweet(@unparsable_tweet)
+        dispatch.attributes.should == dispatch_from_unparsable.attributes
+      end
     end
   end
 end
