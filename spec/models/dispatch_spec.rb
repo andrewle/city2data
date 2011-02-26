@@ -16,7 +16,8 @@ describe Dispatch do
       city: 'Santa Barbara',
       type: 'Public Assist - All',
       incident_num_one: '34443670',
-      incident_num_two: '119790301'
+      incident_num_two: '119790301',
+      json_data: @valid_tweet.to_json
     }
   end
 
