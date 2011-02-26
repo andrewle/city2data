@@ -12,7 +12,7 @@ describe "City2Data application" do
     last_response.should be_ok
   end
 
-  describe "POST /update" do
+  describe "GET /update" do
     
     before(:each) do
       Dispatch.stub(:last).and_return(status_id: 12345)
@@ -20,19 +20,19 @@ describe "City2Data application" do
     end
 
     it "should respond ok" do
-      post '/update'
+      get '/update'
       last_response.should be_ok
     end
 
     it "should find the last dispatch tweet" do
       Dispatch.should_receive(:last)
-      post '/update'
+      get '/update'
     end
 
     it "should query Twitter for SBCFireDispatch's timeline since the last tweet" do
       Twitter.should_receive(:user_timeline)
-             .with('SBCFireDispatch', status_id: 12345)
-      post '/update'
+             .with('SBCFireDispatch', since_id: 12345)
+      get '/update'
     end
   end
 end
