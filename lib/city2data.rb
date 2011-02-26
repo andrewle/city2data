@@ -8,15 +8,9 @@ require_relative 'city2data/tweet'
 
 class City2Data < Sinatra::Base
   configure do
-    set :DB_CONFIG, YAML.load(File.read('config/database.yml'))
-  end
-
-  configure :development do |c|
-    ActiveRecord::Base.establish_connection c.DB_CONFIG['development']
-  end
-
-  configure :production do |c|
-    ActiveRecord::Base.establish_connection c.DB_CONFIG['production']
+    environment = ENV['RACK_ENV'] || 'development'
+    DB_CONFIG = YAML.load(File.read('config/database.yml'))
+    ActiveRecord::Base.establish_connection DB_CONFIG[environment]
   end
 
   get '/' do
