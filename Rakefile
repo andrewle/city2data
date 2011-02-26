@@ -39,4 +39,13 @@ namespace :db do
 
     puts "\n\nSaved #{count} tweets"
   end
+
+  task :update_reported_on => :environment do
+    Dispatch.find_each do |dispatch|
+      tweet = JSON.parse(dispatch.json_data)
+      dispatch.reported_on = tweet['created_at']
+      Dispatch.skip_callback(:save, :before, :geocode)
+      dispatch.save!
+    end
+  end
 end
