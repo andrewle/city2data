@@ -46,7 +46,7 @@ describe "City2Data application" do
         status_id: '39129063457177600',
         address: '4870 Calle Real',
         city: 'Santa Barbara',
-        type: 'Public Assist - All',
+        emergency_type: 'Public Assist - All',
         incident_num_one: '34443670',
         incident_num_two: '119790301'
       }

@@ -5,7 +5,7 @@ class Init < ActiveRecord::Migration
       t.string  :address
       t.string  :city
       t.string  :zip_code
-      t.string  :type
+      t.string  :emergency_type
       t.string  :incident_num_one
       t.string  :incident_num_two
       t.string  :latitude

@@ -22,7 +22,7 @@ class Tweet
         status_id: @data[:id],
         address: components.fetch(0),
         city: components.fetch(1),
-        type: components.fetch(2),
+        emergency_type: components.fetch(2),
         incident_num_one: components.fetch(3),
         incident_num_two: components.fetch(4).sub('- ', ''),
         json_data: @data.to_json
