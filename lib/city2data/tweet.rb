@@ -10,33 +10,27 @@ class Tweet
   end
 
   def parse
-    if parsable?
-      components_for_parsable
-    else
-      components_for_unparsable
-    end
+    common_components.merge(parsed_components)
   end
 
   private
-    def components_for_parsable
+    def parsed_components 
+      return {} unless parsable?
       components = @data[:text].split(SEPARATOR).map(&:strip)
       {
-        status_id: @data[:id],
-        reported_on: @data[:created_at],
         address: components.fetch(0),
         city: components.fetch(1),
         emergency_type: components.fetch(2),
         incident_num_one: components.fetch(3),
         incident_num_two: components.fetch(4).sub('- ', ''),
-        json_data: @data.to_json
       }
     end
 
-    def components_for_unparsable
+    def common_components 
       { 
-        status_id: @data[:id],
+        status_id:   @data[:id],
         reported_on: @data[:created_at],
-        json_data: @data.to_json 
+        json_data:   @data.to_json
       }
     end
 end
