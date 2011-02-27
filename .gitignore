@@ -1,5 +1,5 @@
 *.swp
-db/development.sqlite3
+db/*.sqlite3
 *~
 *.pyc
 *.6
