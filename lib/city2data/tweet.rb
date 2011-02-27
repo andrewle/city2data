@@ -1,10 +1,12 @@
 class Tweet
+  SEPARATOR = '***'
+
   def initialize(tweet)
     @data = tweet
   end
 
   def parsable?
-    @data[:text].include?('***')
+    @data[:text].include?(SEPARATOR)
   end
 
   def parse
@@ -17,7 +19,7 @@ class Tweet
 
   private
     def components_for_parsable
-      components = @data[:text].split('***').map(&:strip)
+      components = @data[:text].split(SEPARATOR).map(&:strip)
       {
         status_id: @data[:id],
         reported_on: @data[:created_at],

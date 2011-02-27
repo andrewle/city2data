@@ -10,7 +10,7 @@ class Dispatch < ActiveRecord::Base
   end
 
   def self.last_status_id
-    Dispatch.order('status_id DESC').first.status_id
+    order('status_id DESC').first.status_id
   end
 
   def self.updates!
