@@ -7,57 +7,42 @@ describe "City2Data application" do
     City2Data
   end
 
-  it "should respond to '/'" do
+  it "GET '/' should be successful" do
     get '/'
     last_response.should be_ok
   end
 
-  describe "GET /update" do
+  describe "GET '/update'" do
     
     before(:each) do
       Dispatch.stub(:last_status_id).and_return(12345)
-      Twitter.stub(:user_timeline).and_return([])
     end
 
-    it "should respond ok" do
-      get '/update'
-      last_response.should be_ok
+    after(:each) do
+      Dispatch.delete_all
     end
 
-    it "should find the last dispatch tweet" do
-      Dispatch.should_receive(:last_status_id)
-      get '/update'
+    context 'when there are no tweets returned' do
+      it "should not add any new dispatches" do
+        Twitter.stub(:user_timeline).and_return([])
+        expect { get '/update' }.to_not change{ Dispatch.count }
+        last_response.should be_ok
+      end
     end
 
-    it "should query Twitter for SBCFireDispatch's timeline since the last tweet" do
-      Twitter.should_receive(:user_timeline)
-             .with('SBCFireDispatch', since_id: 12345)
-      get '/update'
-    end
+    context 'when there are a few tweets returned' do
+      it "should save the new dispatches to the database" do
+        valid_tweets = [
+          { id: '12345',
+            text: '4870 Calle Real *** Santa Barbara *** Public Assist - All *** 34443670 *** - 119790301' },
+          { id: '67890',
+            text: '4870 Calle Real *** Santa Barbara *** Public Assist - All *** 34443670 *** - 119790301' }
+        ]
 
-    it "should create Dispatches from tweets and save them" do
-      valid_tweets = [
-        { id: '12345',
-          text: '4870 Calle Real *** Santa Barbara *** Public Assist - All *** 34443670 *** - 119790301' },
-        { id: '67890',
-          text: '4870 Calle Real *** Santa Barbara *** Public Assist - All *** 34443670 *** - 119790301' }
-      ]
-      valid_attrs = {
-        status_id: '39129063457177600',
-        address: '4870 Calle Real',
-        city: 'Santa Barbara',
-        emergency_type: 'Public Assist - All',
-        incident_num_one: '34443670',
-        incident_num_two: '119790301'
-      }
-
-      valid_dispatch = Dispatch.new(valid_attrs)
-      Twitter.stub(:user_timeline).and_return(valid_tweets)
-
-      Dispatch.should_receive(:new_from_tweet).twice.and_return(valid_dispatch)
-      valid_dispatch.should_receive(:save!).twice
-
-      get '/update'
+        Twitter.stub(:user_timeline).and_return(valid_tweets)
+        expect { get '/update' }.to change{ Dispatch.count }.by(2)
+        last_response.should be_ok
+      end
     end
   end
 end
