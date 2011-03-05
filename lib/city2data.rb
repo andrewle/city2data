@@ -15,10 +15,6 @@ class City2Data < Sinatra::Base
     ActiveRecord::Base.establish_connection DB_CONFIG[environment]
   end
 
-  get '/' do
-    erb :index
-  end
-
   get '/update' do
     Dispatch.updates!
     200
