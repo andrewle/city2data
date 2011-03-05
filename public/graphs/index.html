@@ -37,7 +37,141 @@
   </div>
   
   <div id="main" class="clearfix">
-    <div class="sidebar"></div>
+    <div class="view-options">
+      <form action="/" method="get" accept-charset="utf-8">
+        <fieldset class="graph-type">
+          <input type="button" class="button" value="Total Incidents" name="graph-type" />
+          <input type="button" class="button" value="Incidents V. Time" name="graph-type" />
+        </fieldset>
+
+        <fieldset class="date-view">
+          <input type="button" class="button" value="Day" name="date-view" />
+          <input type="button" class="button" value="Week" name="date-view" />
+          <input type="button" class="button" value="Month" name="date-view" />
+          <input type="button" class="button" value="Year" name="date-view" />
+        </fieldset>
+
+        <fieldset class="incident-options">
+          <hr/>
+
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="AAUTO AID Given" />
+            AAUTO AID Given
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Alarm-Fire / Co Detector" />
+            Alarm-Fire / Co Detector
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="C3ECHO" />
+            C3ECHO
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Code 2 Medical" />
+            Code 2 Medical
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Fire-   Structure-Residential" />
+            Fire-   Structure-Residential
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Fire-  Structure-Commercial" />
+            Fire-  Structure-Commercial
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Fire- Structure-High Rise" />
+            Fire- Structure-High Rise
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Fire-Couch" />
+            Fire-Couch
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Fire-Reported Out" />
+            Fire-Reported Out
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Fire-Trash/Dumpster/etc-Away" />
+            Fire-Trash/Dumpster/etc-Away
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Fire-Trash/Dumpster/near Bldg" />
+            Fire-Trash/Dumpster/near Bldg
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Gas Leak Inside" />
+            Gas Leak Inside
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Gas Leak Outside" />
+            Gas Leak Outside
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="HazMat 1 Eng" />
+            HazMat 1 Eng
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Illegal Burn, Smoke Check" />
+            Illegal Burn, Smoke Check
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Lines down/Wires Arcing" />
+            Lines down/Wires Arcing
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Medical Emergency" />
+            Medical Emergency
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Public Assist - All" />
+            Public Assist - All
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Single Engine Response - Defau" />
+            Single Engine Response - Defau
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Vegetation Fire" />
+            Vegetation Fire
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Vehicle Acc - Code3" />
+            Vehicle Acc - Code3
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Vehicle Fire - Commercial -Bus" />
+            Vehicle Fire - Commercial -Bus
+          </label>
+          
+          <label>
+            <input type="checkbox" class="checkbox" name="incident-options" value="Vehicle Fire - Passenger Car" />
+            Vehicle Fire - Passenger Car
+          </label>
+        </fieldset>
+      </form>
+    </div>
+
     <div class="main-view">
       <div class="graph"></div>
     </div>

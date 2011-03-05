@@ -13,6 +13,7 @@ body {
 .container {
   background-color: #EFF0F2;
   margin: 0 auto;
+  padding-bottom: 40px;
   width: 1024px;
 }
 
@@ -26,7 +27,8 @@ body {
   margin-top: 40px;
 }
 
-#main .sidebar {
+#main .sidebar,
+#main .view-options {
   float: left;
   margin-right: 15px;
   width: 260px;
@@ -113,6 +115,32 @@ body {
 
 #header #nav-pie-charts:hover,
 #header .current #nav-pie-charts { background-position: 0 -412px; } 
+
+/* Graph View Options
+ * ---------------------------------------------------------------------- */
+#main .view-options .checkbox {
+  display: none;
+}
+
+#main .view-options .incident-options {
+  margin-top: 20px;
+}
+
+#main .view-options .incident-options hr {
+  border-top: 1px dotted #666;
+  float: right;
+  margin-bottom: 20px;
+  width: 75%;
+}
+
+#main .view-options .incident-options label {
+  clear: both;
+  color: #666;
+  display: block;
+  line-height: 1.45em;
+  text-align: right;
+  text-transform: uppercase;
+}
 
 /* Clearfix
  * ---------------------------------------------------------------------- */
