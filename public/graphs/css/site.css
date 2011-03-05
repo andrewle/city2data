@@ -73,7 +73,7 @@ body {
 /* Navigation
  * ---------------------------------------------------------------------- */
 #header .nav {
-  bottom: 20px;
+  bottom: -1px;
   position: absolute;
   right: 75px;
 }
@@ -84,9 +84,13 @@ body {
 
 #header .nav li {
   float: left;
-  height: 53px;
+  height: 73px;
   margin-left: 50px;
   width: 60px;
+}
+
+#header .nav li.current {
+  background: url(/graphs/images/pointer.png) center bottom no-repeat;
 }
 
 #header .nav a {
@@ -102,19 +106,16 @@ body {
 
 /* Hover states and current states */
 #header #nav-graphs:hover,
-#header #nav-graphs.current { background-position: 0 0; } 
+#header .current #nav-graphs { background-position: 0 0; } 
 
 #header #nav-maps:hover,
-#header #nav-maps.current { background-position: 0 -206px; } 
+#header .current #nav-maps { background-position: 0 -206px; } 
 
 #header #nav-pie-charts:hover,
-#header #nav-pie-charts.current { background-position: 0 -412px; } 
+#header .current #nav-pie-charts { background-position: 0 -412px; } 
 
-
-/* Clearing floats without extra markup
-   Based on How To Clear Floats Without Structural Markup by PiE
-   [http://www.positioniseverything.net/easyclearing.html] */
-
+/* Clearfix
+ * ---------------------------------------------------------------------- */
 .clearfix:after, .container:after {
   content: "\0020";
   display: block;
