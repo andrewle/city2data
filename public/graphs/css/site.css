@@ -118,12 +118,37 @@ body {
 
 /* Graph View Options
  * ---------------------------------------------------------------------- */
+#main .view-options .graph-type,
+#main .view-options .date-view {
+  text-align: right;
+}
+
+/* Option buttons */
+#main .view-options .button {
+  background-color: transparent;
+  border: none;
+  color: #666;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+#main .view-options .button:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+#main .view-options .button.selected {
+  background-color: #FFF83d;
+}
+
+/* Incident options */
 #main .view-options .checkbox {
   display: none;
 }
 
 #main .view-options .incident-options {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 #main .view-options .incident-options hr {
@@ -133,13 +158,33 @@ body {
   width: 75%;
 }
 
+#main .view-options .incident-options ul {
+  list-style: none;
+}
+
+#main .view-options .incident-options li {
+  display: block;
+  text-align: right;
+}
+
 #main .view-options .incident-options label {
   clear: both;
   color: #666;
-  display: block;
-  line-height: 1.45em;
+  display: inline-block;
+  font-size: 11px;
+  line-height: 1.55em;
+  padding: 1px 5px 0;
   text-align: right;
   text-transform: uppercase;
+}
+
+#main .view-options .incident-options label:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+#main .view-options .incident-options li.selected label {
+  background-color: #FFF83d;
 }
 
 /* Clearfix
