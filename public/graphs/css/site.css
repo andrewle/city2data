@@ -1,40 +1,84 @@
-#container li {
-   background: url(csg-4d729d83bdc1f.png) no-repeat top left;
+/*
+ * City2Data Graphs and Template Stylesheet
+ * ---------------------------------------------------------------------- */
+
+/* Layout
+ * ---------------------------------------------------------------------- */
+body {
+  background-color: #C2C2C2;
 }
 
-nav.sprite-graphs_hover { 
-  background-position: 0 0;
-  width: 80px;
-  height: 70px;
-} 
+.container {
+  background-color: #EFF0F2;
+  margin: 0 auto;
+  width: 1024px;
+}
 
-nav.sprite-graphs_normal { 
-  background-position: 0 -120px;
-  width: 80px;
-  height: 70px;
-} 
+#header {
+  background-color: #322F31;
+  height: 210px;
+  position: relative;
+}
 
-nav.sprite-maps_hover { 
-  background-position: 0 -240px;
-  width: 80px;
-  height: 70px;
-} 
+#main {
+  margin-top: 40px;
+}
 
-nav.sprite-maps_normal { 
-  background-position: 0 -360px;
-  width: 80px;
-  height: 70px;
-} 
+#main .sidebar {
+  float: left;
+  margin-right: 15px;
+  width: 260px;
+}
 
-nav.sprite-pie_hover { 
-  background-position: 0 -480px;
-  width: 80px;
-  height: 70px;
-} 
+#main .main-view {
+  float: left;
+  width: 749px;
+}
 
-nav.sprite-pie_normal{ 
-  background-position: 0 -600px;
-  width: 80px;
+#main .main-view .graph {
+  background-color: #ccc;
+  border: 5px solid white;
+  height: 355px;
+  width: 710px;
+}
+
+/* Navigation
+ * ---------------------------------------------------------------------- */
+#header .nav {
+  bottom: 10px;
+  position: absolute;
+  right: 75px;
+}
+
+#header .nav ul {
+  list-style: none;
+}
+
+#header .nav li {
+  float: left;
   height: 70px;
-} 
+  margin-left: 50px;
+  width: 80px;
+}
+
+#header .nav a {
+  background: url(/graphs/images/nav-sprites.png) no-repeat top left;
+  height: 100%;
+  display: block;
+  text-indent: -999999px;
+}
+
+#header #nav-graphs     { background-position: 0 -120px; }
+#header #nav-maps       { background-position: 0 -360px; }
+#header #nav-pie-charts { background-position: 0 -600px; }
+
+/* Hover states and current states */
+#header #nav-graphs:hover,
+#header #nav-graphs.current { background-position: 0 0; } 
+
+#header #nav-maps:hover,
+#header #nav-maps.current { background-position: 0 -240px; } 
+
+#header #nav-pie-charts:hover,
+#header #nav-pie-charts.current { background-position: 0 -480px; } 
 
