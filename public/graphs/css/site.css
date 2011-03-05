@@ -1,0 +1,40 @@
+#container li {
+   background: url(csg-4d729d83bdc1f.png) no-repeat top left;
+}
+
+nav.sprite-graphs_hover { 
+  background-position: 0 0;
+  width: 80px;
+  height: 70px;
+} 
+
+nav.sprite-graphs_normal { 
+  background-position: 0 -120px;
+  width: 80px;
+  height: 70px;
+} 
+
+nav.sprite-maps_hover { 
+  background-position: 0 -240px;
+  width: 80px;
+  height: 70px;
+} 
+
+nav.sprite-maps_normal { 
+  background-position: 0 -360px;
+  width: 80px;
+  height: 70px;
+} 
+
+nav.sprite-pie_hover { 
+  background-position: 0 -480px;
+  width: 80px;
+  height: 70px;
+} 
+
+nav.sprite-pie_normal{ 
+  background-position: 0 -600px;
+  width: 80px;
+  height: 70px;
+} 
+
