@@ -6,6 +6,8 @@
  * ---------------------------------------------------------------------- */
 body {
   background-color: #C2C2C2;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
 }
 
 .container {
@@ -15,7 +17,7 @@ body {
 }
 
 #header {
-  background-color: #322F31;
+  background-color: #2C292b;
   height: 210px;
   position: relative;
 }
@@ -42,10 +44,36 @@ body {
   width: 710px;
 }
 
+/* Header
+ * ---------------------------------------------------------------------- */
+#header .about h1 {
+  background: url(/graphs/images/datalogo.png) top left no-repeat;
+  display: block;
+  height: 51px;
+  left: 85px;
+  margin-top: -40px;
+  position: absolute;
+  text-indent: -999999px;
+  top: 50%;
+  width: 175px;
+}
+
+#header .about .description {
+  color: #7A7E81;
+  left: 270px;
+  position: absolute;
+  top: 50px;
+  width: 260px;
+}
+
+#header .description .powered-by {
+  margin-top: 1em;
+}
+
 /* Navigation
  * ---------------------------------------------------------------------- */
 #header .nav {
-  bottom: 10px;
+  bottom: 20px;
   position: absolute;
   right: 75px;
 }
@@ -56,9 +84,9 @@ body {
 
 #header .nav li {
   float: left;
-  height: 70px;
+  height: 53px;
   margin-left: 50px;
-  width: 80px;
+  width: 60px;
 }
 
 #header .nav a {
@@ -68,17 +96,17 @@ body {
   text-indent: -999999px;
 }
 
-#header #nav-graphs     { background-position: 0 -120px; }
-#header #nav-maps       { background-position: 0 -360px; }
-#header #nav-pie-charts { background-position: 0 -600px; }
+#header #nav-graphs     { background-position: 0 -103px; }
+#header #nav-maps       { background-position: 0 -309px; }
+#header #nav-pie-charts { background-position: 0 -515px; }
 
 /* Hover states and current states */
 #header #nav-graphs:hover,
 #header #nav-graphs.current { background-position: 0 0; } 
 
 #header #nav-maps:hover,
-#header #nav-maps.current { background-position: 0 -240px; } 
+#header #nav-maps.current { background-position: 0 -206px; } 
 
 #header #nav-pie-charts:hover,
-#header #nav-pie-charts.current { background-position: 0 -480px; } 
+#header #nav-pie-charts.current { background-position: 0 -412px; } 
 
