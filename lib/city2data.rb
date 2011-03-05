@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'rack-rewrite'
 require 'active_record'
 require 'twitter'
 require 'geokit'

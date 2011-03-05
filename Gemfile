@@ -1,6 +1,7 @@
 source :rubygems
 
 gem 'rack', '1.2.1'
+gem 'rack-rewrite', '1.0.2'
 gem 'sinatra', '1.1.2'
 gem 'activerecord', '3.0.4'
 gem 'twitter', '1.1.2'
