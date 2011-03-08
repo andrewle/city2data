@@ -7,11 +7,6 @@ describe "City2Data application" do
     City2Data
   end
 
-  it "GET '/' should be successful" do
-    get '/'
-    last_response.should be_ok
-  end
-
   describe "GET '/update'" do
     
     before(:each) do
