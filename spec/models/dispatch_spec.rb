@@ -59,12 +59,12 @@ describe Dispatch do
     end
   end
 
-  describe 'Geocoding' do
-    it "should respond to #geocode" do
+  describe '#geocode' do
+    it "should be an instance method on Dispatch" do
       Dispatch.new.should respond_to(:geocode)
     end
 
-    it "#geocode should set our remaining location data" do
+    it "should set our remaining location data" do
       Geokit::Geocoders::GoogleGeocoder.should_receive(:geocode).
         and_return(@location)
 
@@ -76,17 +76,20 @@ describe Dispatch do
       dispatch.zip_code.should == '93111'
     end
 
-    it "#geocode should not attempt a service call is the tweet was unparsable" do
+    it "should not attempt a service call if the tweet was unparsable" do
       Geokit::Geocoders::GoogleGeocoder.should_not_receive(:geocode)
       dispatch = Dispatch.new(@unparsable_attrs)
       dispatch.geocode
+    end
 
+    it "should not not attempt a service call if the address field is blank" do
+      Geokit::Geocoders::GoogleGeocoder.should_not_receive(:geocode)
       dispatch_with_blank_address = Dispatch.new(@unparsable_attrs)
       dispatch_with_blank_address.address = ""
       dispatch_with_blank_address.geocode
     end
 
-    it "should call geocode before saving" do
+    it "should get called before saving" do
       dispatch = Dispatch.new(@valid_attrs)
       dispatch.should_receive(:geocode)
       dispatch.save!
