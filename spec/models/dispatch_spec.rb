@@ -32,29 +32,23 @@ describe Dispatch do
     Geokit::Geocoders::GoogleGeocoder.stub(:geocode).and_return(@location)
   end
 
-  describe "#new_from_tweet" do
-    it "should respond" do
-      Dispatch.should respond_to(:new_from_tweet)
+  describe "#updates!" do
+    before(:each) do
+      Dispatch.stub(:last_status_id).and_return(1234)
     end
 
-    describe 'for a parsable tweet' do
-      it "should create a new Dispatch with attributes filled in" do
-        @valid_dispatch = Dispatch.new(@valid_attrs)
-        dispatch_from_tweet = Dispatch.new_from_tweet(@valid_tweet)
-        dispatch_from_tweet.attributes.should == @valid_dispatch.attributes
+    describe 'when tweets are returned' do
+      it 'adds the new Dispatches to the db' do
+        tweets = [@valid_attrs, @valid_attrs]
+        Tweet.stub(:find_since_last_status_id).and_return(tweets)
+        expect { Dispatch.updates! }.to change { Dispatch.count }.by(2)
       end
     end
 
-    describe 'for an unparsable tweet' do
-      it "should return a Dispatch with only the json data filled in" do
-        unparsable_attrs = {
-          status_id: '39129063457177600',
-          reported_on: '2011-01-25 01:53:11.000000',
-          json_data: @unparsable_tweet.to_json
-        }
-        dispatch_from_unparsable = Dispatch.new(unparsable_attrs)
-        dispatch = Dispatch.new_from_tweet(@unparsable_tweet)
-        dispatch.attributes.should == dispatch_from_unparsable.attributes
+    describe 'when no tweets are returned' do
+      it 'does not add any Dispatches to the db' do
+        Tweet.stub(:find_since_last_status_id).and_return([])
+        expect { Dispatch.updates! }.to_not change { Dispatch.count }
       end
     end
   end

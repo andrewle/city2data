@@ -3,21 +3,14 @@ class Dispatch < ActiveRecord::Base
 
   before_save :geocode
 
-  TWITTER_USERNAME = 'SBCFireDispatch'
-
   def self.updates!
-    options = { since_id: last_status_id }
-    Twitter.user_timeline(TWITTER_USERNAME, options).each do |tweet|
-      new_from_tweet(tweet).save!
+    Tweet.find_since_last_status_id(last_status_id).each do |tweet|
+      create!(tweet)
     end
   end
 
   def self.last_status_id
     order('status_id DESC').first.status_id
-  end
-
-  def self.new_from_tweet(tweet)
-    new(Tweet.new(tweet).parse)
   end
 
   def geocode
