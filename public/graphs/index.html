@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="/graphs/css/site.css" type="text/css" media="screen" title="no title" charset="utf-8" />
   
   <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/graphs/js/raphael-min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/graphs/js/g.raphael-min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/graphs/js/g.bar-min.js"></script>
   <script type="text/javascript" charset="utf-8" src="/graphs/js/site.js"></script>
   
   <title>Santa Barbara Data - City2</title>
@@ -36,7 +39,7 @@
     </div>
   </div>
   
-  <div id="main" class="clearfix">
+  <div id="main">
     <div class="view-options">
       <form action="/" method="get" accept-charset="utf-8">
         <fieldset class="graph-type">
@@ -51,8 +54,14 @@
           <input type="button" class="button" value="Year" name="date-view" />
         </fieldset>
 
+        <!--TODO: Pull this informaiton dynamically from the DB-->
         <fieldset class="incident-options"><!--{{{-->
           <hr/>
+
+          <fieldset class="meta-select">
+            <input id="incidents-select-all" type="button" class="button" value="All" name="incident-options-meta" />
+            <input id="incidents-select-none" type="button" class="button" value="None" name="incident-options-meta" />
+          </fieldset>
 
           <ul>
             <li class="selected">
@@ -223,7 +232,7 @@
       </div>
 
     <div class="main-view">
-      <div class="graph"></div>
+      <div class="graph" id="holder"></div>
     </div>
   </div>
   

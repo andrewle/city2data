@@ -142,7 +142,7 @@ body {
   border: none;
   color: #666;
   margin: 0;
-  padding: 0;
+  padding: 0 5px;
   text-transform: uppercase;
 }
 
@@ -156,6 +156,12 @@ body {
 }
 
 /* Incident options */
+#main .incident-options .meta-select {
+  clear: both;
+  margin-bottom: 10px;
+  text-align: right;
+}
+
 #main .view-options .checkbox {
   display: none;
 }
