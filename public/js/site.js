@@ -53,7 +53,8 @@ Chart.prototype.draw = function () {
 };
 
 $(function () {
-  $('#header .nav li').click(function () {
+  $('#header .nav li').click(function (event) {
+    event.preventDefault();
     $(this).siblings().removeClass('current');
     $(this).addClass('current');
   });
