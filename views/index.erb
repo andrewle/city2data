@@ -41,12 +41,12 @@
   <div id="main">
     <div class="view-options">
       <form action="/" method="get" accept-charset="utf-8">
-        <fieldset class="graph-type">
+        <fieldset class="graph-type" id="graph-type-selector">
           <input type="button" class="button selected" value="Total Incidents" name="graph-type" />
           <input type="button" class="button" value="Incidents V. Time" name="graph-type" />
         </fieldset>
 
-        <fieldset class="date-view">
+        <fieldset class="date-view" id="date-view-selector">
           <input type="button" class="button" value="Day" name="date-view" />
           <input type="button" class="button selected" value="Week" name="date-view" />
           <input type="button" class="button" value="Month" name="date-view" />
@@ -56,7 +56,7 @@
         <fieldset class="incident-options">
           <hr/>
 
-          <fieldset class="meta-select">
+          <fieldset class="meta-select" id="meta-types-selector">
             <input id="incidents-select-all" type="button" class="button" value="All" name="incident-options-meta" />
             <input id="incidents-select-none" type="button" class="button" value="None" name="incident-options-meta" />
           </fieldset>

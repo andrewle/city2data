@@ -31,10 +31,4 @@
     return this;
   };
 
-  $(function () {
-    $('#emergency-types-selector').superSelect({
-      optionSelectors: 'li',
-      multi: true
-    });
-  });
 })(jQuery);

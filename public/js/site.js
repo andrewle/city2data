@@ -93,5 +93,25 @@ $(function () {
     $(this).addClass('current');
   });
 
+  $('#emergency-types-selector').superSelect({
+    optionSelectors: 'li',
+    multi: true
+  });
+
+  $('#meta-types-selector').superSelect({
+    optionSelectors: 'input',
+    multi: false
+  });
+
+  $('#date-view-selector').superSelect({
+    optionSelectors: 'input',
+    multi: false
+  });
+
+  $('#graph-type-selector').superSelect({
+    optionSelectors: 'input',
+    multi: false
+  });
+
   var chart = new Chart();
 });
