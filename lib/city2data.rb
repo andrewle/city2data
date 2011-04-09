@@ -17,6 +17,7 @@ class City2Data < Sinatra::Base
   end
 
   get '/' do
+    @emergency_types = Dispatch.emergency_types
     erb :index
   end
 

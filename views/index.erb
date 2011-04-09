@@ -52,8 +52,7 @@
           <input type="button" class="button" value="Year" name="date-view" />
         </fieldset>
 
-        <!-- TODO: Pull this informaiton dynamically from the DB -->
-        <fieldset class="incident-options"><!--{{{-->
+        <fieldset class="incident-options">
           <hr/>
 
           <fieldset class="meta-select">
@@ -62,170 +61,17 @@
           </fieldset>
 
           <ul>
-            <li class="selected">
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="AAUTO AID Given" />
-                AAUTO AID Given
-              </label>
-            </li>
-
+            <% @emergency_types.each do |type|  %>
             <li>
               <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Alarm-Fire / Co Detector" />
-                Alarm-Fire / Co Detector
+                <input type="checkbox" class="checkbox" name="incident-options" value="<%= type %>" />
+                <%= type  %>
               </label>
             </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="C3ECHO" />
-                C3ECHO
-              </label>
-            </li>
-
-            <li class="selected">
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Code 2 Medical" />
-                Code 2 Medical
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Fire-   Structure-Residential" />
-                Fire-   Structure-Residential
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Fire-  Structure-Commercial" />
-                Fire-  Structure-Commercial
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Fire- Structure-High Rise" />
-                Fire- Structure-High Rise
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Fire-Couch" />
-                Fire-Couch
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Fire-Reported Out" />
-                Fire-Reported Out
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Fire-Trash/Dumpster/etc-Away" />
-                Fire-Trash/Dumpster/etc-Away
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Fire-Trash/Dumpster/near Bldg" />
-                Fire-Trash/Dumpster/near Bldg
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Gas Leak Inside" />
-                Gas Leak Inside
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Gas Leak Outside" />
-                Gas Leak Outside
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="HazMat 1 Eng" />
-                HazMat 1 Eng
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Illegal Burn, Smoke Check" />
-                Illegal Burn, Smoke Check
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Lines down/Wires Arcing" />
-                Lines down/Wires Arcing
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Medical Emergency" />
-                Medical Emergency
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Public Assist - All" />
-                Public Assist - All
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Single Engine Response - Defau" />
-                Single Engine Response - Defau
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Vegetation Fire" />
-                Vegetation Fire
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Vehicle Acc - Code3" />
-                Vehicle Acc - Code3
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Vehicle Fire - Commercial -Bus" />
-                Vehicle Fire - Commercial -Bus
-              </label>
-            </li>
-
-            <li>
-              <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="Vehicle Fire - Passenger Car" />
-                Vehicle Fire - Passenger Car
-              </label>
-            </li>
+            <% end  %>
           </ul>
-          <li>
 
-          </fieldset><!--}}}-->
+          </fieldset>
         </form>
       </div>
 

@@ -13,6 +13,10 @@ class Dispatch < ActiveRecord::Base
     order('status_id DESC').first.status_id
   end
 
+  def self.emergency_types
+    select('DISTINCT(emergency_type)').collect { |d| d.emergency_type }
+  end
+
   def self.find_within_last_7_days
 	sql = <<-SQL
 	  select emergency_type, count(emergency_type) as total_reported 
