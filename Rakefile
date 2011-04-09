@@ -1,6 +1,11 @@
 require_relative 'lib/city2data'
 require 'logger'
 
+desc "Push to github and deploy"
+task :deploy do
+  system("git push && git push heroku master")
+end
+
 namespace :db do
   task :environment do
     config = YAML.load(File.read('config/database.yml'))
