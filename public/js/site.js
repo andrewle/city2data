@@ -51,12 +51,41 @@ Chart.colors = [
   "rgb(253, 192, 131)"
 ];
 
+Chart.prototype.fin = function () {
+  var that = this;
+  return function () {
+    var popup = $('<div class="graph-popup"><span>&#9662;</span></div>');
+    var text = that.data.labels[this.bar.id],
+        textCount = ": " + this.bar.value;
+    popup.appendTo('body');
+    popup.prepend("<p>" + text + textCount + "</p>");
+
+    var canvasLeft = this.paper.canvas.offsetLeft,
+        canvasTop  = this.paper.canvas.offsetTop,
+        pWidth     = popup.outerWidth(),
+        pHeight    = popup.outerHeight(),
+        xAdjust    = 3,
+        yAdjust    = -5,
+        pTop       = this.bar.y + canvasTop - pHeight + yAdjust,
+        pLeft      = this.bar.x + canvasLeft - pWidth / 2 + xAdjust;
+
+    popup.css({ top: pTop, left: pLeft });
+    this.popup = popup;
+  };
+};
+
+Chart.prototype.fout = function () {
+  this.popup.fadeOut('fast');
+};
+
 Chart.prototype.draw = function () {
   var 
       data   = this.data.values,
       labels = this.data.labels,
       opts   = {colors: Chart.colors },
-      chart  = this.r.g.barchart(0, 10, 700, 345, data, opts);
+      chart  = this.r.g.barchart(0, 25, 700, 345, data, opts);
+
+  chart.hover(this.fin(), this.fout);
   return (this.chart = chart);
 };
 

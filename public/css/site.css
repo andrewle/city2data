@@ -206,6 +206,29 @@ body {
   background-color: #FFF83d;
 }
 
+/* Popup 
+ * ---------------------------------------------------------------------- */
+.graph-popup {
+  background-color: black;
+  border-radius: 5px;
+  color: white;
+  left: 50%;
+  opacity: 0.9;
+  padding: 5px 8px;
+  position: absolute;
+  top: 400px;
+  width: 150px;
+}
+
+.graph-popup span {
+  color: black;
+  bottom: -0.75em;
+  left: 50%;
+  font-size: 18px;
+  margin-left: -0.5em;
+  position: absolute;
+}
+
 /* Clearfix
  * ---------------------------------------------------------------------- */
 .clearfix:after, .container:after {
