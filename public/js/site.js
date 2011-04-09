@@ -72,7 +72,9 @@ Chart.prototype.fin = function () {
 };
 
 Chart.prototype.fout = function () {
-  this.popup.fadeOut('fast');
+  this.popup.fadeOut('fast', function () {
+    $(this).remove();
+  });
 };
 
 Chart.prototype.draw = function () {
