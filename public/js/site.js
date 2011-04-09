@@ -27,19 +27,30 @@ Chart.processDataAndDraw = function () {
 };
 
 Chart.prototype.generateColors = function () {
-  var hues = [0.6, 0.2, 0.05, 0.1333, 0.75, 0],
-      len = this.data.values.length,
-      colors = [];
-
-  for (var i = 0; i < len; i++) {
-    if (i < hues.length) {
-      colors.push("hsb(" + hues[i] + ", .75, .75)");
-    } else {
-      var m = Math.floor(i/hues.length),
-          x = m > 1 ? hues.length : 0;
-      colors.push("hsb(" + hues[i - x - hues.length] + ", 1, .5)");
-    }
-  }
+  var colors = [
+    "rgb(247, 150, 103)",
+    "rgb(244, 122, 75)",
+    "rgb(242, 93, 69)",
+    "rgb(210, 31, 47)",
+    "rgb(209, 28, 89)",
+    "rgb(237, 0, 136)",
+    "rgb(131, 56, 133)",
+    "rgb(126, 102, 157)",
+    "rgb(128, 160, 207)",
+    "rgb(91, 179, 223)",
+    "rgb(0, 175, 233)",
+    "rgb(0, 156, 211)",
+    "rgb(1, 113, 153)",
+    "rgb(0, 173, 176)",
+    "rgb(52, 144, 123)",
+    "rgb(50, 143, 72)",
+    "rgb(73, 107, 44)",
+    "rgb(115, 118, 40)",
+    "rgb(187, 165, 53)",
+    "rgb(255, 216, 124)",
+    "rgb(243, 235, 8)",
+    "rgb(253, 192, 131)"
+  ];
   return colors;
 };
 
