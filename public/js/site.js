@@ -100,7 +100,16 @@ $(function () {
 
   $('#meta-types-selector').superSelect({
     optionSelectors: 'input',
-    multi: false
+    multi: false,
+    onSelectOption: {
+      all: function () {
+        $('#emergency-types-selector li').addClass('selected');
+      },
+
+      none: function () {
+        $('#emergency-types-selector li').removeClass('selected');
+      }
+    }
   });
 
   $('#date-view-selector').superSelect({

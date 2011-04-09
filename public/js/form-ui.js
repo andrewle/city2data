@@ -5,6 +5,7 @@
     this.optionSelectors = opts.optionSelectors;
     this.multi = opts.multi || false;
     this.options = $(this.optionSelectors, context);
+    this.selectEvents = opts.onSelectOption || {};
     this.bindEvents();
   };
 
@@ -22,7 +23,16 @@
          that.options.removeClass('selected');
         }
         el.toggleClass('selected', !el.hasClass('selected'));
+
+        if (el.hasClass('selected') && el.val().length) {
+          that.fireSelectOptionCallback(el.val());
+        }
       };
+    },
+
+    fireSelectOptionCallback: function (key) {
+      var callback = this.selectEvents[key];
+      if (callback !== undefined) { callback(); }
     }
   });
 
