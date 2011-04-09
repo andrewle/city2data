@@ -23,9 +23,6 @@ Chart.prototype.fetchData = function () {
   });
 };
 
-Chart.processDataAndDraw = function () {
-};
-
 Chart.colors = [
   "rgb(247, 150, 103)",
   "rgb(244, 122, 75)",

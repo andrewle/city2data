@@ -12,6 +12,7 @@
   <script type="text/javascript" charset="utf-8" src="/js/raphael-min.js"></script>
   <script type="text/javascript" charset="utf-8" src="/js/g.raphael-min.js"></script>
   <script type="text/javascript" charset="utf-8" src="/js/g.bar-min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/js/form-ui.js"></script>
   <script type="text/javascript" charset="utf-8" src="/js/site.js"></script>
   
   <title>Santa Barbara Data - City2</title>
@@ -60,7 +61,7 @@
             <input id="incidents-select-none" type="button" class="button" value="None" name="incident-options-meta" />
           </fieldset>
 
-          <ul>
+          <ul id="emergency-types-selector">
             <% @emergency_types.each do |type|  %>
             <li>
               <label>
