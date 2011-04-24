@@ -13,20 +13,23 @@
     return DataServiceRequest.requestId > 0;
   };
 
-  DataServiceRequest.prototype.queue = function () {
-    if (DataServiceRequest.hasCurrentRequest()) { return; }
-    var that = this;
-    DataServiceRequest.requestId = setTimeout(function () {
-      that.submit();
-    }, 250);
-  };
+  $.extend(DataServiceRequest.prototype, {
+    queue: function () {
+      if (DataServiceRequest.hasCurrentRequest()) { return; }
+      var that = this;
+      DataServiceRequest.requestId = setTimeout(function () {
+        that.submit();
+      }, 250);
+    },
 
-  DataServiceRequest.prototype.submit = function () {
-    $.getJSON(this.url, this.form.serialize(), this.updateData);
-  };
+    submit: function () {
+      $.post(this.url, this.form.serialize(), this.updateData, 'json');
+    },
 
-  DataServiceRequest.prototype.updateData = function (data) { 
-    console.log(data); 
-    DataServiceRequest.requestId = 0;
-  };
+    updateData: function (data) {
+      console.log(data); 
+      DataServiceRequest.requestId = 0;
+    }
+  });
+
 })();
