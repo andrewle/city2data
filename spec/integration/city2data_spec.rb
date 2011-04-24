@@ -7,8 +7,14 @@ describe "City2Data application" do
     City2Data
   end
 
+  describe "GET /dispatches/totals/last-7-days" do
+    it "is successful" do
+      get '/dispatches/totals/last-7-days'
+      last_response.should be_ok
+    end
+  end
+
   describe "GET '/update'" do
-    
     before(:each) do
       Dispatch.stub(:last_status_id).and_return(12345)
     end

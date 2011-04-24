@@ -1,4 +1,5 @@
-require 'spec_helper'
+require 'json'
+require 'city2data/totals_report'
 
 describe Dispatch::TotalsReport do
   it '#within_7_days returns a json object with just the emergency type and total reported' do
