@@ -10,7 +10,7 @@ $(function () {
     multi: true,
     onSelectOption: {
       DEFAULT: function (value, isSelected) {
-        return new DataServiceRequest();
+        return new ReportDataRequest();
       }
     }
   });
@@ -23,7 +23,7 @@ $(function () {
         var options = $('#emergency-types-selector li');
         options.addClass('selected');
         options.find('input').attr('checked', true);
-        return new DataServiceRequest();
+        return new ReportDataRequest();
       },
 
       none: function () {
