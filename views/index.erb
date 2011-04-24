@@ -68,7 +68,7 @@
             <% @emergency_types.each do |type|  %>
             <li>
               <label>
-                <input type="checkbox" class="checkbox" name="incident-options" value="<%= type %>" />
+                <input type="checkbox" class="checkbox" name="incident-options[]" value="<%= type %>" />
                 <%= type  %>
               </label>
             </li>

@@ -19,10 +19,17 @@
       return function (event) {
         event.preventDefault();
         var el = $(this);
+        var input = el.find('input');
+
         if (that.multi === false) {
          that.options.removeClass('selected');
         }
+
         el.toggleClass('selected', !el.hasClass('selected'));
+
+        if (input.length) {
+          input.attr('checked', el.hasClass('selected'));
+        }
 
         if (el.hasClass('selected') && el.val().length) {
           that.fireSelectOptionCallback(el.val());
