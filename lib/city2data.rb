@@ -27,20 +27,12 @@ class City2Data < Sinatra::Base
   end
 
   get '/dispatches/totals/last-7-days' do
-    dispatches_within_last_7_days
+    content_type :json
+    Dispatch::TotalsReport.within_7_days
   end
 
   post '/dispatches/totals/last-7-days' do
-    dispatches_within_last_7_days
-  end
-
-  helpers do
-    def dispatches_within_last_7_days
-      dispatches = Dispatch.find_within_last_7_days
-      content_type :json
-      dispatches.collect do |d|
-        {emergency_type: d.emergency_type, total_reported: d.total_reported}
-      end.to_json
-    end
+    content_type :json
+    Dispatch::TotalsReport.within_7_days
   end
 end
