@@ -18,28 +18,38 @@
       var that = this;
       return function (event) {
         event.preventDefault();
-        var el = $(this);
-        var input = el.find('input');
+        var el = $(this),
+            input = el.find('input'),
+            isSelected = el.hasClass('selected'),
+            shouldBeSelected = !isSelected;
 
         if (that.multi === false) {
          that.options.removeClass('selected');
         }
 
-        el.toggleClass('selected', !el.hasClass('selected'));
+        el.toggleClass('selected', shouldBeSelected);
 
         if (input.length) {
-          input.attr('checked', el.hasClass('selected'));
+          input.attr('checked', shouldBeSelected);
         }
 
-        if (el.hasClass('selected') && el.val().length) {
-          that.fireSelectOptionCallback(el.val());
-        }
+        that.fireSelectOptionCallback(
+          that.optionVal(el, input), shouldBeSelected);
       };
     },
 
-    fireSelectOptionCallback: function (key) {
-      var callback = this.selectEvents[key];
-      if (callback !== undefined) { callback(); }
+    optionVal: function (el, input) {
+      if (el.get(0).tagName.toLowerCase() == 'input') {
+        return el.val();
+      } else {
+        return input.val();
+      }
+    },
+
+    fireSelectOptionCallback: function (value, isSelected) {
+      var callback = this.selectEvents[value];
+      callback = callback === undefined ? this.selectEvents.DEFAULT : callback;
+      if (callback !== undefined) { callback(value, isSelected); }
     }
   });
 
