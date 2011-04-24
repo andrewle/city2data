@@ -2,7 +2,7 @@
 
   var DataServiceRequest = function () {
     this.form = $('#main form');
-    this.url = '/';
+    this.url = '/dispatches/totals/last-7-days';
     this.queue();
   };
   window.DataServiceRequest = DataServiceRequest;
@@ -22,7 +22,11 @@
   };
 
   DataServiceRequest.prototype.submit = function () {
-    console.log($('#main form').serialize());
+    $.getJSON(this.url, this.form.serialize(), this.updateData);
+  };
+
+  DataServiceRequest.prototype.updateData = function (data) { 
+    console.log(data); 
     DataServiceRequest.requestId = 0;
   };
 })();
