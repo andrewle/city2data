@@ -29,11 +29,11 @@ class City2Data < Sinatra::Base
 
   get '/dispatches/totals/last-7-days' do
     content_type :json
-    Dispatch::TotalsReport.within_7_days
+    Dispatch::TotalsReport.new(Dispatch.within_last_7_days).to_json
   end
 
   post '/dispatches/totals/last-7-days' do
     content_type :json
-    Dispatch::TotalsReport.within_7_days
+    Dispatch::TotalsReport.new(Dispatch.within_last_7_days).to_json
   end
 end
