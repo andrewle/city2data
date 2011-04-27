@@ -11,7 +11,7 @@ describe Dispatch::TotalsReport do
       {:emergency_type => 'Couch Fire', :total_reported => '10' }
     ].to_json
 
-    Dispatch.should_receive(:find_within_last_7_days).and_return([dispatch])
-    Dispatch::TotalsReport.within_7_days.should == expected_json
+    report = Dispatch::TotalsReport.new([dispatch])
+    report.to_json.should == expected_json
   end
 end

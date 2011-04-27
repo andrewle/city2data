@@ -16,17 +16,12 @@ class Dispatch < ActiveRecord::Base
     select('DISTINCT(emergency_type)').collect { |d| d.emergency_type }
   end
 
-  def self.find_within_last_7_days
-	sql = <<-SQL
-	  select emergency_type, count(emergency_type) as total_reported 
-	  from dispatches 
-	  where 
-		reported_on > (now() - interval '7 days') 
-		and emergency_type != '' 
-	  group by emergency_type 
-	  order by emergency_type ASC
-	SQL
-	find_by_sql(sql)
+  def self.within_last_7_days
+    select("emergency_type, count(emergency_type) as total_reported").
+      where("reported_on > (now() - interval '7 days')").
+      where("emergency_type != ''").
+      group('emergency_type').
+      order('emergency_type')
   end
 
   def geocode
