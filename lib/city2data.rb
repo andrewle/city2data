@@ -34,6 +34,7 @@ class City2Data < Sinatra::Base
 
   post '/dispatches/totals/last-7-days' do
     content_type :json
-    Dispatch::TotalsReport.new(Dispatch.within_last_7_days).to_json
+    dispatches = Dispatch.within_last_7_days_for_types(params['incident-options'])
+    Dispatch::TotalsReport.new(dispatches).to_json
   end
 end

@@ -24,6 +24,15 @@ class Dispatch < ActiveRecord::Base
       order('emergency_type')
   end
 
+  def self.within_last_7_days_for_types(emergencies)
+    select("emergency_type, count(emergency_type) as total_reported").
+      where("reported_on > (now() - interval '7 days')").
+      where("emergency_type != ''").
+      group('emergency_type').
+      order('emergency_type').
+      where(:emergency_type => emergencies)
+  end
+
   def geocode
     return if self.address.nil? || self.address.length == 0
     loc = GoogleGeocoder.geocode("#{address}, #{city}, CA")
