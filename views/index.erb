@@ -69,7 +69,7 @@
           <ul id="emergency-types-selector">
             <% @emergency_types.each do |type|  %>
             <li>
-              <label>
+              <label rel="<%= type %>">
                 <input type="checkbox" class="checkbox" name="incident-options[]" value="<%= type %>" />
                 <%= type  %>
               </label>

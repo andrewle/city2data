@@ -12,7 +12,7 @@ $(function () {
     multi: true,
     onSelectOption: {
       DEFAULT: function (value, isSelected) {
-        new Chart();
+        return new Chart();
       }
     }
   });
@@ -23,9 +23,15 @@ $(function () {
     onSelectOption: {
       all: function () {
         var options = $('#emergency-types-selector li');
-        options.addClass('selected');
-        options.find('input').attr('checked', true);
-        new Chart();
+        $.each(options, function (i, opt) {
+          opt = $(opt);
+          if (opt.find('label').hasClass('disabled')) {
+            return;
+          }
+          opt.addClass('selected');
+          opt.find('input').attr('checked', true);
+        });
+        return new Chart();
       },
 
       none: function () {

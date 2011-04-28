@@ -216,6 +216,12 @@ body {
   cursor: pointer;
 }
 
+#main .view-options .incident-options label.disabled,
+#main .view-options .incident-options label.disabled:hover {
+  background-color: transparent;
+  color: #aaa;
+}
+
 #main .view-options .incident-options li.selected label {
   background-color: #FFF83d;
 }

@@ -23,6 +23,8 @@
             isSelected = el.hasClass('selected'),
             shouldBeSelected = !isSelected;
 
+        if (el.find('label').hasClass('disabled')) { return; }
+
         if (that.multi === false) {
          that.options.removeClass('selected');
         }

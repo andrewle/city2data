@@ -102,6 +102,26 @@ Chart.prototype.associateLabels = function (chart) {
   });
 };
 
+Chart.prototype.updateToggleOptions = function () {
+  var labels = [],
+      options = $('#emergency-types-selector li label');
+
+  $.each(this.data.labels, function (i, label) {
+    labels.push(label);
+  });
+
+  $.each(options, function (i, option) {
+    option = $(option);
+    var rel = option.attr('rel');
+    if (labels.indexOf(rel) == -1) {
+      option.addClass('disabled');
+    } else {
+      option.removeClass('disabled');
+    }
+  });
+  Chart.prototype.updateToggleOptions = $.noop;
+};
+
 Chart.prototype.draw = function () {
   var 
       data   = this.data.values,
@@ -110,6 +130,7 @@ Chart.prototype.draw = function () {
       chart  = this.r.g.barchart(0, 25, 700, 345, data, opts);
 
   this.associateLabels(chart);
+  this.updateToggleOptions();
   chart.hover(this.fin(), this.fout);
   return (this.chart = chart);
 };
