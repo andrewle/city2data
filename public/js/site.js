@@ -1,4 +1,6 @@
 $(function () {
+  var chart = new Chart();
+
   $('#header .nav li').click(function (event) {
     event.preventDefault();
     $(this).siblings().removeClass('current');
@@ -10,7 +12,7 @@ $(function () {
     multi: true,
     onSelectOption: {
       DEFAULT: function (value, isSelected) {
-        return new ReportDataRequest();
+        new Chart();
       }
     }
   });
@@ -23,7 +25,7 @@ $(function () {
         var options = $('#emergency-types-selector li');
         options.addClass('selected');
         options.find('input').attr('checked', true);
-        return new ReportDataRequest();
+        new Chart();
       },
 
       none: function () {
@@ -44,5 +46,4 @@ $(function () {
     multi: false
   });
 
-  var chart = new Chart();
 });

@@ -1,9 +1,10 @@
 (function () {
 
-  var ReportDataRequest = function () {
+  var ReportDataRequest = function (options) {
     this.form = $('#main form');
     this.url = '/dispatches/totals/last-7-days';
     this.queue();
+    this.callback = options.callback;
   };
   window.ReportDataRequest = ReportDataRequest;
 
@@ -23,11 +24,14 @@
     },
 
     submit: function () {
-      $.post(this.url, this.form.serialize(), this.updateData, 'json');
+      var that = this;
+      $.post(this.url, this.form.serialize(), function (data) {
+        that.updateData(data);
+      }, 'json');
     },
 
     updateData: function (data) {
-      console.log(data); 
+      this.callback(data);
       ReportDataRequest.requestId = 0;
     }
   });

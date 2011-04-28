@@ -25,6 +25,7 @@ class Dispatch < ActiveRecord::Base
   end
 
   def self.within_last_7_days_for_types(emergencies)
+    return within_last_7_days if emergencies.nil?
     select("emergency_type, count(emergency_type) as total_reported").
       where("reported_on > (now() - interval '7 days')").
       where("emergency_type != ''").

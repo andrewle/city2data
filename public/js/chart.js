@@ -1,4 +1,5 @@
 var Chart = function () {
+  $('#the-graph').empty();
   this.r = Raphael("the-graph");
   this.fetchData();
   return this.chart;
@@ -6,21 +7,27 @@ var Chart = function () {
 
 Chart.prototype.fetchData = function () {
   var that = this;
-  $.getJSON('/dispatches/totals/last-7-days', function (data) {
-    var labels = [], values = [];
-
-    $.each(data, function () {
-      labels.push(this.emergency_type);
-      values.push(this.total_reported);
-    });
-
-    that.data = {
-      values: values,
-      labels: labels
-    };
-    
-    that.draw();
+  return new ReportDataRequest({
+    callback: function (data) {
+      that.update(data);
+    }
   });
+};
+
+Chart.prototype.update = function (data) {
+  var labels = [], values = [];
+
+  $.each(data, function () {
+    labels.push(this.emergency_type);
+    values.push(this.total_reported);
+  });
+
+  this.data = {
+    values: values,
+    labels: labels
+  };
+
+  this.draw();
 };
 
 Chart.colors = [
@@ -63,7 +70,7 @@ Chart.prototype.fin = function () {
   var that = this;
   return function () {
     var popup = $('<div class="graph-popup"><span>&#9662;</span></div>');
-    var text = that.data.labels[this.bar.id],
+    var text = this.bar.label,
         textCount = ": " + this.bar.value;
     popup.appendTo('body');
     popup.prepend("<p>" + text + textCount + "</p>");
@@ -88,6 +95,13 @@ Chart.prototype.fout = function () {
   });
 };
 
+Chart.prototype.associateLabels = function (chart) {
+  var labels = this.data.labels;
+  $.each(chart.bars, function (i, bar) {
+    bar.label = labels[i];
+  });
+};
+
 Chart.prototype.draw = function () {
   var 
       data   = this.data.values,
@@ -95,6 +109,7 @@ Chart.prototype.draw = function () {
       opts   = {colors: Chart.colors },
       chart  = this.r.g.barchart(0, 25, 700, 345, data, opts);
 
+  this.associateLabels(chart);
   chart.hover(this.fin(), this.fout);
   return (this.chart = chart);
 };
