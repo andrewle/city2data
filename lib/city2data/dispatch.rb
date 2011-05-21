@@ -24,10 +24,9 @@ class Dispatch < ActiveRecord::Base
       order('emergency_type')
 
 	unless emergencies.nil?
-      where(:emergency_type => emergencies)
+	  dispatches = dispatches.where(:emergency_type => emergencies)
 	end
-
-	dispatches.all
+	dispatches
   end
 
   def self.within_last_30_days(emergencies)
@@ -38,7 +37,7 @@ class Dispatch < ActiveRecord::Base
       order('emergency_type')
 
 	unless emergencies.nil?
-      where(:emergency_type => emergencies)
+	  dispatches = dispatches.where(:emergency_type => emergencies)
 	end
 
 	dispatches.all
@@ -52,7 +51,7 @@ class Dispatch < ActiveRecord::Base
       order('emergency_type')
 
 	unless emergencies.nil?
-      where(:emergency_type => emergencies)
+	  dispatches = dispatches.where(:emergency_type => emergencies)
 	end
 
 	dispatches.all
@@ -66,7 +65,7 @@ class Dispatch < ActiveRecord::Base
       order('emergency_type')
 
 	unless emergencies.nil?
-      where(:emergency_type => emergencies)
+	  dispatches = dispatches.where(:emergency_type => emergencies)
 	end
 
 	dispatches.all

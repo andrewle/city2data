@@ -13,6 +13,13 @@ describe "City2Data application" do
       last_response.should be_ok
 	  last_response.body.should_not == '[]'
     end
+
+    it "should not include results for types not requested" do
+      post '/dispatches/totals/last-7-days', {
+		'incident-options' => ['Code 2 Medical'] 
+	  }
+	  last_response.body.should_not include('Alarm')
+    end
   end
 
   describe "POST /dispatches/totals/last-30-days" do
@@ -20,6 +27,13 @@ describe "City2Data application" do
       post '/dispatches/totals/last-30-days'
 	  last_response.content_type.should == 'application/json'
 	  last_response.body.should_not == '[]'
+    end
+
+    it "should not include results for types not requested" do
+      post '/dispatches/totals/last-30-days', {
+		'incident-options' => ['Code 2 Medical'] 
+	  }
+	  last_response.body.should_not include('Alarm')
     end
   end
 
@@ -29,6 +43,13 @@ describe "City2Data application" do
 	  last_response.content_type.should == 'application/json'
 	  last_response.body.should_not == '[]'
     end
+
+    it "should not include results for types not requested" do
+      post '/dispatches/totals/year-to-date', {
+		'incident-options' => ['Code 2 Medical'] 
+	  }
+	  last_response.body.should_not include('Alarm')
+    end
   end
 
   describe "POST /dispatches/totals/last-24-hours" do
@@ -36,6 +57,13 @@ describe "City2Data application" do
       post '/dispatches/totals/last-24-hours'
 	  last_response.content_type.should == 'application/json'
 	  last_response.body.should_not == '[]'
+    end
+
+    it "should not include results for types not requested" do
+      post '/dispatches/totals/last-24-hours', {
+		'incident-options' => ['Code 2 Medical'] 
+	  }
+	  last_response.body.should_not include('Alarm')
     end
   end
 
