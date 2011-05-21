@@ -50,6 +50,17 @@ body {
   border-color: #aaa;
 }
 
+.x-tip {
+  background-color: black;
+  border: none;
+  opacity: 0.8;
+}
+
+.x-tip-header-text {
+  color: white;
+  line-height: 19px;
+}
+
 /* Header
  * ---------------------------------------------------------------------- */
 #header .about h1 {

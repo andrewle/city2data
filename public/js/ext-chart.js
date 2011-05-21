@@ -92,11 +92,10 @@ Ext.onReady(function () {
           type: 'column',
           axis: 'left',
           contrast: true,
-          highlight: true,
           tips: {
             trackMouse: true,
-            width: 140,
-            height: 28,
+            'min-width': 140,
+            width: 200,
             renderer: function(storeItem, item) {
               this.setTitle(storeItem.get('emergency_type') + ': ' + storeItem.get('total_reported'));
             }
