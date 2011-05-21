@@ -3,23 +3,22 @@ Ext.require(['Ext.Window', 'Ext.layout.container.Fit', 'Ext.fx.target.Sprite']);
 
 Ext.onReady(function () {
   var win = Ext.create('Ext.Window', {
-    width: 800,
+    width: 710,
     height: 600,
     hidden: false,
-    maximizable: true,
-    title: 'Column Chart',
-    renderTo: Ext.getBody(),
+    maximizable: false,
+    renderTo: Ext.get('the-graph'),
     layout: 'fit',
-    tbar: [{
-      text: 'Reload Data',
-      handler: function() {
-        store1.loadData(generateData());
-      }
-    }],
+    resizable: false,
+    draggable: false,
+    closable: false,
+    x: 0,
+    y: 0,
+    border: 0,
     items: {
       id: 'chartCmp',
       xtype: 'chart',
-      style: 'background:#fff',
+      style: 'background:#ccc',
       animate: true,
       shadow: true,
       store: store1,

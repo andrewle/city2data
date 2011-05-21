@@ -41,9 +41,13 @@ body {
 
 #main .main-view .graph {
   background-color: #ccc;
-  border: 5px solid white;
-  height: 355px;
+  position: relative;
   width: 710px;
+}
+
+#main .main-view .graph .x-window {
+  background-color: #ccc;
+  border-color: #aaa;
 }
 
 /* Header
