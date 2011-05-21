@@ -1,5 +1,4 @@
 $(function () {
-  var chart = new Chart();
 
   $('#header .nav li').click(function (event) {
     event.preventDefault();
