@@ -1,6 +1,8 @@
 $(function () {
   function updateData() {
+    var period = $('#date-view-selector input.selected').val().toLowerCase();
     return new ReportDataRequest({
+      period: period,
       callback: function (data) {
         window.reportData.loadData(data);
       }
@@ -17,9 +19,7 @@ $(function () {
     optionSelectors: 'li',
     multi: true,
     onSelectOption: {
-      DEFAULT: function (value, isSelected) {
-        updateData();
-      }
+      DEFAULT: updateData
     }
   });
 
@@ -40,10 +40,11 @@ $(function () {
         updateData();
       },
 
-      none: function () {
+      reset: function () {
         var options = $('#emergency-types-selector li');
         options.removeClass('selected');
         options.find('input').attr('checked', false);
+        updateData();
       }
     }
   });
@@ -52,14 +53,7 @@ $(function () {
     optionSelectors: 'input',
     multi: false,
     onSelectOption: {
-      DEFAULT: function (value, isSelected) {
-        return new ReportDataRequest({
-          period: value.toLowerCase(),
-          callback: function (data) {
-            window.reportData.loadData(data);
-          }
-        });
-      }
+      DEFAULT: updateData
     }
   });
 
