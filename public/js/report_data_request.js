@@ -20,7 +20,7 @@
       'day'     : '/dispatches/totals/last-24-hours',
       'week'    : '/dispatches/totals/last-7-days',
       'month'   : '/dispatches/totals/last-30-days',
-      'year'    : '/dispatches/totals/last-year-to-date'
+      'year'    : '/dispatches/totals/year-to-date'
     },
 
     url: function () {

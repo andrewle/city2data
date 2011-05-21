@@ -16,22 +16,60 @@ class Dispatch < ActiveRecord::Base
     select('DISTINCT(emergency_type)').collect { |d| d.emergency_type }
   end
 
-  def self.within_last_7_days
-    select("emergency_type, count(emergency_type) as total_reported").
+  def self.within_last_7_days(emergencies)
+    dispatches = select("emergency_type, count(emergency_type) as total_reported").
       where("reported_on > (now() - interval '7 days')").
       where("emergency_type != ''").
       group('emergency_type').
       order('emergency_type')
+
+	unless emergencies.nil?
+      where(:emergency_type => emergencies)
+	end
+
+	dispatches.all
   end
 
-  def self.within_last_7_days_for_types(emergencies)
-    return within_last_7_days if emergencies.nil?
-    select("emergency_type, count(emergency_type) as total_reported").
-      where("reported_on > (now() - interval '7 days')").
+  def self.within_last_30_days(emergencies)
+    dispatches = select("emergency_type, count(emergency_type) as total_reported").
+      where("reported_on > (now() - interval '30 days')").
       where("emergency_type != ''").
       group('emergency_type').
-      order('emergency_type').
+      order('emergency_type')
+
+	unless emergencies.nil?
       where(:emergency_type => emergencies)
+	end
+
+	dispatches.all
+  end
+
+  def self.within_year_to_date(emergencies)
+    dispatches = select("emergency_type, count(emergency_type) as total_reported").
+      where("reported_on > date '2011-01-01'").
+      where("emergency_type != ''").
+      group('emergency_type').
+      order('emergency_type')
+
+	unless emergencies.nil?
+      where(:emergency_type => emergencies)
+	end
+
+	dispatches.all
+  end
+
+  def self.within_last_24_hours(emergencies)
+    dispatches = select("emergency_type, count(emergency_type) as total_reported").
+      where("reported_on > (now() - interval '24 hours')").
+      where("emergency_type != ''").
+      group('emergency_type').
+      order('emergency_type')
+
+	unless emergencies.nil?
+      where(:emergency_type => emergencies)
+	end
+
+	dispatches.all
   end
 
   def geocode

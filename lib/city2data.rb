@@ -27,14 +27,28 @@ class City2Data < Sinatra::Base
     200
   end
 
-  get '/dispatches/totals/last-7-days' do
-    content_type :json
-    Dispatch::TotalsReport.new(Dispatch.within_last_7_days).to_json
-  end
-
   post '/dispatches/totals/last-7-days' do
     content_type :json
-    dispatches = Dispatch.within_last_7_days_for_types(params['incident-options'])
+    dispatches = Dispatch.within_last_7_days(params['incident-options'])
     Dispatch::TotalsReport.new(dispatches).to_json
   end
+
+  post '/dispatches/totals/last-30-days' do
+	content_type :json
+	dispatches = Dispatch.within_last_30_days(params['incident-options'])
+    Dispatch::TotalsReport.new(dispatches).to_json
+  end
+
+  post '/dispatches/totals/year-to-date' do
+	content_type :json
+	dispatches = Dispatch.within_year_to_date(params['incident-options'])
+    Dispatch::TotalsReport.new(dispatches).to_json
+  end
+
+  post '/dispatches/totals/last-24-hours' do
+	content_type :json
+	dispatches = Dispatch.within_last_24_hours(params['incident-options'])
+    Dispatch::TotalsReport.new(dispatches).to_json
+  end
+
 end
