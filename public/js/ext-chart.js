@@ -83,7 +83,10 @@ Ext.onReady(function () {
           type: 'Category',
           position: 'bottom',
           fields: ['emergency_type'],
-          title: 'Emergency Type'
+          title: 'Emergency Type',
+          label: {
+            renderer: function () { return ''; }
+          }
         }],
         series: [{
           type: 'column',
@@ -95,12 +98,10 @@ Ext.onReady(function () {
             width: 140,
             height: 28,
             renderer: function(storeItem, item) {
-              this.setTitle(storeItem.get('emergency_type') + ': ' + storeItem.get('total_reported') + ' $');
+              this.setTitle(storeItem.get('emergency_type') + ': ' + storeItem.get('total_reported'));
             }
           },
           label: {
-            display: 'insideEnd',
-            'text-anchor': 'middle',
             field: 'total_reported',
             renderer: Ext.util.Format.numberRenderer('0'),
             orientation: 'vertical',
