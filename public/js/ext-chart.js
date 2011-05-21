@@ -37,7 +37,7 @@ Ext.onReady(function () {
           position: 'left',
           fields: ['total_reported'],
           label: {
-            renderer: Ext.util.Format.numberRenderer('0,0')
+            renderer: Ext.util.Format.numberRenderer('0')
           },
           title: 'Total Reported',
           grid: true,
