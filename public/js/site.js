@@ -50,7 +50,17 @@ $(function () {
 
   $('#date-view-selector').superSelect({
     optionSelectors: 'input',
-    multi: false
+    multi: false,
+    onSelectOption: {
+      DEFAULT: function (value, isSelected) {
+        return new ReportDataRequest({
+          period: value.toLowerCase(),
+          callback: function (data) {
+            window.reportData.loadData(data);
+          }
+        });
+      }
+    }
   });
 
   $('#graph-type-selector').superSelect({

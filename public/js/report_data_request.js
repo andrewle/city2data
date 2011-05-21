@@ -2,9 +2,9 @@
 
   var ReportDataRequest = function (options) {
     this.form = $('#main form');
-    this.url = '/dispatches/totals/last-7-days';
     this.queue();
     this.callback = options.callback;
+    this.period = options.period || false;
   };
   window.ReportDataRequest = ReportDataRequest;
 
@@ -15,6 +15,19 @@
   };
 
   $.extend(ReportDataRequest.prototype, {
+    requestUrls: {
+      'default' : '/dispatches/totals/last-7-days',
+      'day'     : '/dispatches/totals/last-24-hours',
+      'week'    : '/dispatches/totals/last-7-days',
+      'month'   : '/dispatches/totals/last-30-days',
+      'year'    : '/dispatches/totals/last-year-to-date'
+    },
+
+    url: function () {
+      var url = this.requestUrls[this.period];
+      return url !== undefined ? url : this.requestUrls['default'];
+    },
+
     queue: function () {
       if (ReportDataRequest.hasCurrentRequest()) { return; }
       var that = this;
@@ -25,7 +38,7 @@
 
     submit: function () {
       var that = this;
-      $.post(this.url, this.form.serialize(), function (data) {
+      $.post(this.url(), this.form.serialize(), function (data) {
         that.updateData(data);
       }, 'json');
     },
