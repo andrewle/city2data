@@ -51,7 +51,7 @@ Ext.onReady(function () {
   function bootstrap() {
     var win = Ext.create('Ext.Window', {
       width: 710,
-      height: 600,
+      height: 450,
       hidden: false,
       maximizable: false,
       renderTo: Ext.get('the-graph'),
