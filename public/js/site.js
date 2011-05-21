@@ -1,4 +1,11 @@
 $(function () {
+  function updateData() {
+    return new ReportDataRequest({
+      callback: function (data) {
+        window.reportData.loadData(data);
+      }
+    });
+  }
 
   $('#header .nav li').click(function (event) {
     event.preventDefault();
@@ -11,7 +18,7 @@ $(function () {
     multi: true,
     onSelectOption: {
       DEFAULT: function (value, isSelected) {
-        return new Chart();
+        updateData();
       }
     }
   });
@@ -30,7 +37,7 @@ $(function () {
           opt.addClass('selected');
           opt.find('input').attr('checked', true);
         });
-        return new Chart();
+        updateData();
       },
 
       none: function () {
