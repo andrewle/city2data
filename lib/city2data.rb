@@ -34,19 +34,19 @@ class City2Data < Sinatra::Base
     200
   end
 
-  post '/dispatches/totals/last-24-hours' do
-    find_dispatches(:within_last_24_hours)
-  end
+  VALID_PERIODS = {
+    'last-24-hours' => :within_last_24_hours,
+    'last-7-days'   => :within_last_7_days,
+    'last-30-days'  => :within_last_30_days,
+    'year-to-date'  => :within_year_to_date
+  }
 
-  post '/dispatches/totals/last-7-days' do
-    find_dispatches(:within_last_7_days)
-  end
-
-  post '/dispatches/totals/last-30-days' do
-    find_dispatches(:within_last_30_days)
-  end
-
-  post '/dispatches/totals/year-to-date' do
-    find_dispatches(:within_year_to_date)
+  post '/dispatches/totals/:period' do
+    begin
+      method = VALID_PERIODS.fetch(params[:period])
+      find_dispatches(method)
+    rescue KeyError
+      404
+    end
   end
 end

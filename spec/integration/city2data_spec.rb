@@ -67,6 +67,11 @@ describe "City2Data application" do
     end
   end
 
+  it "returns 404 for a not found totals report" do
+    post '/dispatches/totals/nonexsistent-report'
+    last_response.status.should == 404
+  end
+
   describe "GET '/update'" do
     before(:each) do
       Dispatch.stub(:last_status_id).and_return(12345)
