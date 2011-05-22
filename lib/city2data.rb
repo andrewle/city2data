@@ -1,5 +1,4 @@
 require 'sinatra/base'
-require 'rack-rewrite'
 require 'active_record'
 require 'twitter'
 require 'geokit'
@@ -27,6 +26,12 @@ class City2Data < Sinatra::Base
     200
   end
 
+  post '/dispatches/totals/last-24-hours' do
+	content_type :json
+	dispatches = Dispatch.within_last_24_hours(params['incident-options'])
+    Dispatch::TotalsReport.new(dispatches).to_json
+  end
+
   post '/dispatches/totals/last-7-days' do
     content_type :json
     dispatches = Dispatch.within_last_7_days(params['incident-options'])
@@ -44,11 +49,4 @@ class City2Data < Sinatra::Base
 	dispatches = Dispatch.within_year_to_date(params['incident-options'])
     Dispatch::TotalsReport.new(dispatches).to_json
   end
-
-  post '/dispatches/totals/last-24-hours' do
-	content_type :json
-	dispatches = Dispatch.within_last_24_hours(params['incident-options'])
-    Dispatch::TotalsReport.new(dispatches).to_json
-  end
-
 end

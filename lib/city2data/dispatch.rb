@@ -16,59 +16,32 @@ class Dispatch < ActiveRecord::Base
     select('DISTINCT(emergency_type)').collect { |d| d.emergency_type }
   end
 
-  def self.within_last_7_days(emergencies)
+  def self.report_for_emergencies(date_condition, emergencies)
     dispatches = select("emergency_type, count(emergency_type) as total_reported").
-      where("reported_on > (now() - interval '7 days')").
+      where("reported_on > (#{date_condition})").
       where("emergency_type != ''").
       group('emergency_type').
       order('emergency_type')
-
 	unless emergencies.nil?
 	  dispatches = dispatches.where(:emergency_type => emergencies)
 	end
-	dispatches
-  end
-
-  def self.within_last_30_days(emergencies)
-    dispatches = select("emergency_type, count(emergency_type) as total_reported").
-      where("reported_on > (now() - interval '30 days')").
-      where("emergency_type != ''").
-      group('emergency_type').
-      order('emergency_type')
-
-	unless emergencies.nil?
-	  dispatches = dispatches.where(:emergency_type => emergencies)
-	end
-
-	dispatches.all
-  end
-
-  def self.within_year_to_date(emergencies)
-    dispatches = select("emergency_type, count(emergency_type) as total_reported").
-      where("reported_on > date '2011-01-01'").
-      where("emergency_type != ''").
-      group('emergency_type').
-      order('emergency_type')
-
-	unless emergencies.nil?
-	  dispatches = dispatches.where(:emergency_type => emergencies)
-	end
-
 	dispatches.all
   end
 
   def self.within_last_24_hours(emergencies)
-    dispatches = select("emergency_type, count(emergency_type) as total_reported").
-      where("reported_on > (now() - interval '24 hours')").
-      where("emergency_type != ''").
-      group('emergency_type').
-      order('emergency_type')
+    self.report_for_emergencies("now() - interval '24 hours'", emergencies)
+  end
 
-	unless emergencies.nil?
-	  dispatches = dispatches.where(:emergency_type => emergencies)
-	end
+  def self.within_last_7_days(emergencies)
+    self.report_for_emergencies("now() - interval '7 days'", emergencies)
+  end
 
-	dispatches.all
+  def self.within_last_30_days(emergencies)
+    self.report_for_emergencies("now() - interval '30 days'", emergencies)
+  end
+
+  def self.within_year_to_date(emergencies)
+    self.report_for_emergencies("date '2011-01-01'", emergencies)
   end
 
   def geocode
