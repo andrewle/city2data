@@ -1,18 +1,17 @@
 (function () {
   var SwatchUpdater = function (store) {
     this.store = store;
-    this.clearSwatches();
-    this.update();
   };
   window.SwatchUpdater = SwatchUpdater;
 
-  $.extend(SwatchUpdater.prototype, {
-    clearSwatches: function () {
-      $('#emergency-types-selector label').
-        removeClass('disabled').
+  SwatchUpdater.clearSwatches = function () {
+    $('#emergency-types-selector .swatch').hide();
+    $('#emergency-types-selector label').
+      removeClass('disabled').
         addClass('disabled');
-    },
+  };
 
+  $.extend(SwatchUpdater.prototype, {
     update: function () {
       var that = this;
       this.store.each(function (record) {

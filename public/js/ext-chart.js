@@ -8,6 +8,8 @@ Ext.onReady(function () {
       data: data 
     });
     var swatchUpdater = new SwatchUpdater(window.reportData);
+    SwatchUpdater.clearSwatches();
+    swatchUpdater.update();
 
     bootstrap();
   }

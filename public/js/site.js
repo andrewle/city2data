@@ -4,7 +4,9 @@ $(function () {
     var receiveDataCallback = function (data) {
       var store = window.reportData;
       store.loadData(data);
+
       var swatchUpdater = new SwatchUpdater(store);
+      swatchUpdater.update();
     };
 
     return new ReportDataRequest({
@@ -57,7 +59,14 @@ $(function () {
     optionSelectors: 'input',
     multi: false,
     onSelectOption: {
-      DEFAULT: updateData
+      DEFAULT: function () {
+        var options = $('#emergency-types-selector li');
+        options.removeClass('selected');
+        options.find('input').attr('checked', false);
+
+        SwatchUpdater.clearSwatches();
+        updateData();
+      }
     }
   });
 
