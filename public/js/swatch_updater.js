@@ -8,7 +8,9 @@
 
   $.extend(SwatchUpdater.prototype, {
     clearSwatches: function () {
-      // $('#emergency-types-selector .swatch').hide();
+      $('#emergency-types-selector label').
+        removeClass('disabled').
+        addClass('disabled');
     },
 
     update: function () {
@@ -24,6 +26,7 @@
       type = type.replace(/(\W|\s)/g, '').toLowerCase();
       var swatch = $("#" + type + " .swatch");
       swatch.css({'background-color': color}).show();
+      $("#" + type + " label").removeClass('disabled');
     }
   });
 })();
