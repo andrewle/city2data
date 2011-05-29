@@ -34,3 +34,7 @@ Chart.colors = {
   "WALKIN":                          "rgb(131, 124, 255)"
 };
 
+Chart.getColorForType = function (type) {
+  type = type.replace(/\s{2,}/, "").trim();
+  return Chart.colors[type] !== undefined ? Chart.colors[type] : "#000";
+};

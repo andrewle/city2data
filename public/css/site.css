@@ -231,6 +231,13 @@ body {
   cursor: pointer;
 }
 
+#main .view-options .incident-options .swatch {
+  background-color: red;
+  display: inline-block; 
+  height: 8px;
+  width: 8px;
+}
+
 #main .view-options .incident-options label.disabled,
 #main .view-options .incident-options label.disabled:hover {
   background-color: transparent;

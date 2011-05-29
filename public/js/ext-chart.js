@@ -73,11 +73,9 @@ Ext.onReady(function () {
           yField: 'total_reported',
           //color renderer
           renderer: function(sprite, record, attr, index, store) {
-              var type = record.get('emergency_type').replace(/\s{2,}/, "").trim();
-              var color = Chart.colors[type] !== undefined ? Chart.colors[type] : "#000";
-              return Ext.apply(attr, {
-                fill: color
-              });
+            return Ext.apply(attr, {
+              fill: Chart.getColorForType(record.get('emergency_type'))
+            });
           }
         }]
       }
