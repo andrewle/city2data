@@ -7,6 +7,7 @@ Ext.onReady(function () {
       fields: ['emergency_type', 'total_reported'],
       data: data 
     });
+    var swatchUpdater = new SwatchUpdater(window.reportData);
 
     bootstrap();
   }

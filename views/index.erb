@@ -17,6 +17,7 @@
   <script type="text/javascript" charset="utf-8" src="/js/chart-colors.js"></script>
   <script type="text/javascript" charset="utf-8" src="/js/form-ui.js"></script>
   <script type="text/javascript" charset="utf-8" src="/js/report_data_request.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/js/swatch_updater.js"></script>
   <script type="text/javascript" charset="utf-8" src="/js/ext-chart.js"></script>
   <script type="text/javascript" charset="utf-8" src="/js/site.js"></script>
   
@@ -68,7 +69,7 @@
 
           <ul id="emergency-types-selector">
             <% @emergency_types.each do |type|  %>
-            <li>
+              <li id="<%= type.gsub(/[^\w]/, '').downcase %>">
               <label rel="<%= type %>">
                 <input type="checkbox" class="checkbox" name="incident-options[]" value="<%= type %>" />
                 <%= type  %>

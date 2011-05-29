@@ -1,11 +1,15 @@
 $(function () {
   function updateData() {
     var period = $('#date-view-selector input.selected').val().toLowerCase();
+    var receiveDataCallback = function (data) {
+      var store = window.reportData;
+      store.loadData(data);
+      var swatchUpdater = new SwatchUpdater(store);
+    };
+
     return new ReportDataRequest({
       period: period,
-      callback: function (data) {
-        window.reportData.loadData(data);
-      }
+      callback: receiveDataCallback
     });
   }
 
