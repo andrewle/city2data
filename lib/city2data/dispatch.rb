@@ -13,7 +13,8 @@ class Dispatch < ActiveRecord::Base
   end
 
   def self.emergency_types
-    select('DISTINCT(emergency_type)').collect { |d| d.emergency_type }
+    select('DISTINCT(emergency_type)').
+      where("emergency_type != ''").collect { |d| d.emergency_type }
   end
 
   def self.report_for_emergencies(date_condition, emergencies)
