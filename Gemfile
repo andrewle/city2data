@@ -10,6 +10,7 @@ gem 'geokit', '1.5.0'
 group :test, :development do
   gem 'rspec', '2.5.0'
   gem 'rack-test', '0.5.7'
+  gem 'shotgun', '0.9'
   gem 'sqlite3-ruby', '1.3.3'
 end
 
